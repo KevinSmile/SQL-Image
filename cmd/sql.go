@@ -15,7 +15,7 @@ func doSQL(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	fmt.Println("SQL docker-images: image -> database, file -> table")
+	fmt.Println("SQL docker-images: image -> database, file -> layer-diff")
 	if err := terminal.Start(); err != nil {
 		log.Fatal(err.Error())
 	}
