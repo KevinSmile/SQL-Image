@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func doSQL(cmd *cobra.Command, args []string)  {
+func doSQL(cmd *cobra.Command, args []string) {
 	if len(args) == 0 || args[0] == "" {
-		if showVersionFlag, _:= cmd.PersistentFlags().GetBool(showVersionCMD.Use); showVersionFlag {
+		if showVersionFlag, _ := cmd.PersistentFlags().GetBool(showVersionCMD.Use); showVersionFlag {
 			showVersion(cmd, args)
 			return
 		}
@@ -23,5 +23,5 @@ func doSQL(cmd *cobra.Command, args []string)  {
 
 		os.Exit(1)
 	}
-	
+
 }
