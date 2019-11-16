@@ -7,6 +7,7 @@ import (
 
 	"github.com/KevinSmile/SQL-Image/fsql-img/query"
 	"github.com/KevinSmile/SQL-Image/fsql-img/tokenizer"
+	"github.com/KevinSmile/SQL-Image/image"
 )
 
 // Run parses the input string and returns the parsed AST (query).
@@ -33,6 +34,11 @@ func (p *parser) parse(input string) (*query.Query, error) {
 	if err := p.parseWhereClause(q); err != nil {
 		return nil, err
 	}
+
+	for index, path := range q.Sources["include"] {
+		q.Sources["include"][index] = image.Overlay2Dir + "/" + path
+	}
+
 	return q, nil
 }
 

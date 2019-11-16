@@ -24,16 +24,16 @@ type Layer struct {
 
 }
 
-type ImageRepo struct {
+type Repo struct {
 	Repositories map[string]map[string]string
 }
 
 func GetImages() []Image{
 	repositoriesJsonFile, _ := ioutil.ReadFile(RepositoriesJsonFile)
-	var imageRepo ImageRepo
+	var repo Repo
 	var images []Image
-	if err := json.Unmarshal(repositoriesJsonFile, &imageRepo); err == nil {
-		for _, imageTags := range imageRepo.Repositories {
+	if err := json.Unmarshal(repositoriesJsonFile, &repo); err == nil {
+		for _, imageTags := range repo.Repositories {
 			for tag, sha256 := range imageTags {
 				if !strings.Contains(tag, "@sha256:") {
 					images = append(images, Image{tag, sha256[7:]})

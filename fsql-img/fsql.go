@@ -11,7 +11,7 @@ import (
 )
 
 func init() {
-	CurrentImage = "ubuntu:latest1234"
+	CurrentImage = "ubuntu:latest"
 }
 
 var CurrentImage string
@@ -49,7 +49,7 @@ func Run(input string) error {
 
 	err = q.Execute(
 		func(path string, info os.FileInfo, result map[string]interface{}) {
-			result["name"] = path
+			result["name"] = path[len(image.Overlay2Dir) + 1:]
 			results = append(results, result)
 			if !q.HasAttribute("name") {
 				return
