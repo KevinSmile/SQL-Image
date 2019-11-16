@@ -4,12 +4,40 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/KevinSmile/SQL-Image/fsql-img/parser"
+	"github.com/KevinSmile/SQL-Image/image"
 )
+
+func init() {
+	CurrentImage = "ubuntu:latest1234"
+}
+
+var CurrentImage string
 
 // Run parses the input and executes the resultant query.
 func Run(input string) error {
+	input = strings.TrimSpace(input)
+	if strings.EqualFold(input, "SHOW IMAGES") {
+		for _, imageTag := range image.GetImageTags() {
+			fmt.Println(imageTag)
+		}
+		return nil
+	}
+	if strings.HasPrefix(strings.ToUpper(input), "USE") {
+		CurrentImage = strings.Split(input, " ")[1]
+		fmt.Println(CurrentImage)
+		return nil
+
+	}
+	if strings.EqualFold(input, "SHOW LAYERS") {
+		for _, imageTag := range image.GetImageLayers(CurrentImage) {
+			fmt.Println(imageTag)
+		}
+		return nil
+	}
+
 	q, err := parser.Run(input)
 	if err != nil {
 		return err
