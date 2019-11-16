@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/kashav/fsql/terminal"
+	"github.com/KevinSmile/SQL-Image/fsql-img/terminal"
 	"github.com/spf13/cobra"
 )
 
