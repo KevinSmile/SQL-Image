@@ -36,7 +36,7 @@ func (p *parser) parse(input string) (*query.Query, error) {
 	}
 
 	for index, path := range q.Sources["include"] {
-		q.Sources["include"][index] = image.Overlay2Dir + "/" + path
+		q.Sources["include"][index] = image.Overlay2Dir + "/" + path + "/diff"
 	}
 
 	return q, nil

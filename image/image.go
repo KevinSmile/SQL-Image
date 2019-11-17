@@ -9,10 +9,10 @@ import (
 )
 
 const (
-	RepositoriesJsonFile = "/Users/Kevin/Downloads/dockerTest/var/lib/docker/image/overlay2/repositories.json"
-	ImagedbSha256Dir = "/Users/Kevin/Downloads/dockerTest/var/lib/docker/image/overlay2/imagedb/content/sha256"
-	LayerdbSha256Dir = "/Users/Kevin/Downloads/dockerTest/var/lib/docker/image/overlay2/layerdb/sha256"
-	Overlay2Dir = "/Users/Kevin/Downloads/dockerTest/var/lib/docker/overlay2"
+	RepositoriesJsonFile = "/var/lib/docker/image/overlay2/repositories.json"
+	ImagedbSha256Dir = "/var/lib/docker/image/overlay2/imagedb/content/sha256"
+	LayerdbSha256Dir = "/var/lib/docker/image/overlay2/layerdb/sha256"
+	Overlay2Dir = "/var/lib/docker/overlay2"
 )
 
 type Image struct {
@@ -54,6 +54,7 @@ func GetImageTags() []string{
 	return tags
 }
 
+// todo: use docker-overlay2 imagedb & layerdb link filestore later. now list all layers.
 func GetImageLayers(imageTag string) []string {
 	var layers []string
 	if dirs, err := ioutil.ReadDir(Overlay2Dir); err == nil {
