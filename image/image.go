@@ -54,6 +54,7 @@ func GetImageTags() []string{
 	return tags
 }
 
+// todo: use docker-overlay2 imagedb & layerdb link filestore later. now list all layers.
 func GetImageLayers(imageTag string) []string {
 	var layers []string
 	if dirs, err := ioutil.ReadDir(Overlay2Dir); err == nil {
